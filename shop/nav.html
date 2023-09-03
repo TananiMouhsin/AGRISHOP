@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Category Select</title>
+    </head>
+    <body>
+        <label for="main-category">Select Main Category:</label>
+        <select id="main-category" onchange="updateSubcategories()">
+            <option value="">--Select Main Category--</option>
+            <option value="fruits">Fruits</option>
+            <option value="dairy-eggs">Dairy and Eggs</option>
+            <option value="meat-poultry">Meat and Poultry</option>
+            <option value="farm-supplies">Farm Supplies and Equipment</option>
+            <option value="value-added">Value-Added Products</option>
+        </select>
+    
+        <label for="sub-category">Select Subcategory:</label>
+        <select id="sub-category">
+            <option value="">--Select Subcategory--</option>
+        </select>
+    
+        <script>
+            const subcategories = {
+                fruits: ['Vegetables', 'Grains', 'Herbs', 'Nuts', 'Spices'],
+                'dairy-eggs': ['Milk', 'Cheese', 'Butter', 'Yogurt', 'Eggs'],
+                'meat-poultry': ['Beef', 'Chicken', 'Lamb', 'Pork', 'Turkey'],
+                'farm-supplies': ['Seeds', 'Fertilizers', 'Irrigation Systems', 'Farm Machinery', 'Gardening Tools', 'Pest Control Products'],
+                'value-added': ['Honey', 'Jams and Preserves', 'Pickles', 'Sausages and Charcuterie', 'Baked Goods'],
+            };
+    
+            function updateSubcategories() {
+                const mainCategorySelect = document.getElementById('main-category');
+                const subCategorySelect = document.getElementById('sub-category');
+                const selectedMainCategory = mainCategorySelect.value;
+    
+                // Clear existing options
+                subCategorySelect.innerHTML = '<option value="">--Select Subcategory--</option>';
+    
+                // Add subcategory options based on the selected main category
+                if (selectedMainCategory && subcategories[selectedMainCategory]) {
+                    subcategories[selectedMainCategory].forEach((subcategory) => {
+                        const option = document.createElement('option');
+                        option.textContent = subcategory;
+                        option.value = subcategory.toLowerCase().replace(/ /g, '-');
+                        subCategorySelect.appendChild(option);
+                    });
+                }
+            }
+        </script>
+    </body>
+    </html>

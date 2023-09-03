@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css.css"> -->
+    <title>login</title>
+    <style>
+/* styles.css */
+body{
+    
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    z-index: 9999;
+    /* styles.css */
+.popup {
+    /* Existing styles... */
+    backdrop-filter: blur(5px); /* Add this line to blur the background */
+}
+
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body id="body">
+
+
+
+    <button id="popupButton">Click Me!</button>
+
+    <!-- Popup window -->
+    <div id="popup" class="popup">
+        <span id="closeButton" class="close">&times;</span>
+        <h3>Hello, this is the popup window!</h3>
+    </div>
+
+
+
+    
+   <script>// script.js
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    const popupButton = document.getElementById('popupButton');
+    const popup = document.getElementById('popup');
+    const closeButton = document.getElementById('closeButton');
+    const 
+
+    popupButton.addEventListener('click', function() {
+        popup.style.display = 'block';
+        
+    });
+
+    closeButton.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+});
+
+    </script> 
+</body>
+</html>

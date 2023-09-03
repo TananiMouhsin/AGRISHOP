@@ -1,0 +1,151 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>signup </title>
+        <link rel="website icon" type="png" href="images/logo1.png">
+    </head>
+    <body class="signup">
+        <nav>   
+            <div class="logo">
+              <img src="images/logo1.png" alt="">
+              <h2>AGRISHOP</h2>
+            </div>
+            <div class="navlinks" id="naglinks">
+                <ul>
+
+                    <li><a href="home.php">home</a></li>
+                    <li><a href="products.php">products</a></li>
+                    <li><a href="aboutus.php">about us</a></li>
+                    <li><a href="login.html">login</a></li>
+
+                </ul>
+            </div>
+
+            <img src="images/hb.png" alt="" class="hb">
+            
+        </nav> 
+        <div class="cc">
+            <div class="container">
+                <div class="images">
+                    <img src="images/Sign up-bro.png" alt="" >
+                </div>
+                <form action="signup.php" method="post" id="loginForm">
+                    <div class="sign">
+                        <h1>signup</h1>
+                        <div class="il">
+                            <label for="email">email</label><br>
+                            <input type="text" name="email" >
+                        </div>
+                        <div class="il">
+                            <label for="username">username</label><br>
+                            <input type="text" name="username" >
+                        </div>
+                        <div class="il">
+                            <label for="phone">phone number</label><br>
+                            <input type="number" name="phone" >
+                        </div>
+                        <div class="il">
+                            <label for="password">password</label><br>
+                            <input type="password" name="password" >
+                        </div>
+                        <div class="il">
+                            <label for="cpassword">confirme password</label><br>
+                            <input type="password" name="cpassword" >
+                        </div>
+                        
+                        <input type="submit" name="singbtn" class="signbtn" value="signup">
+
+                        <p>already have an account ? <a href="login.html">login</a></p>
+
+                    </div>
+                </form>
+                    
+                
+                
+            </div>
+        </div>
+        <script>
+            // Wait for the DOM to load
+document.addEventListener("DOMContentLoaded", function() {
+  // Get the signup form and input fields
+  var signupForm = document.querySelector("form");
+  var emailInput = document.querySelector("input[name='email']");
+  var usernameInput = document.querySelector("input[name='username']");
+  var phoneInput = document.querySelector("input[name='phone']");
+  var passwordInput = document.querySelector("input[name='password']");
+  var cpasswordInput = document.querySelector("input[name='cpassword']");
+
+  // Add an event listener to the form submission
+  signupForm.addEventListener("submit", function(event) {
+    // Check for empty input fields
+    var errors = [];
+
+    if (emailInput.value.trim() === "") {
+      errors.push("Email is required.");
+    }
+
+    if (usernameInput.value.trim() === "") {
+      errors.push("Username is required.");
+    }
+
+    if (phoneInput.value.trim() === "") {
+      errors.push("Phone number is required.");
+    }
+
+    if (passwordInput.value === "") {
+      errors.push("Password is required.");
+    }
+
+    if (cpasswordInput.value === "") {
+      errors.push("Confirmation password is required.");
+    }
+
+    // Check for password mismatch
+    if (passwordInput.value !== cpasswordInput.value) {
+      errors.push("Password and confirmation password do not match.");
+    }
+
+    // Display error messages if there are any errors
+    if (errors.length > 0) {
+      event.preventDefault(); // Prevent form submission
+
+      // Clear existing error messages
+      clearErrorMessages();
+
+      // Display new error messages
+      errors.forEach(function(error) {
+        displayErrorMessage(error);
+      });
+    }
+  });
+
+  // Function to display an error message
+  function displayErrorMessage(message) {
+    var errorMessage = document.createElement("p");
+    errorMessage.classList.add("error-message");
+    errorMessage.textContent = message;
+    signupForm.appendChild(errorMessage);
+  }
+
+  // Function to clear error messages
+  function clearErrorMessages() {
+    var errorMessages = signupForm.querySelectorAll(".error-message");
+    errorMessages.forEach(function(errorMessage) {
+      errorMessage.remove();
+    });
+  }
+});
+
+const menuHamburger = document.querySelector(".hb")
+        const navLinks = document.querySelector(".navlinks")
+        menuHamburger.addEventListener('click',()=>{
+        navLinks.classList.toggle('active')
+        })
+
+        </script>
+        
+    </body>
+    </html>
