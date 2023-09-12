@@ -13,7 +13,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>profile</title>
     <link rel="website icon" type="png" href="images/logo1.png">
-    <script src="profile.js" defer></script>
+    <!-- <script src="profile.js" defer></script> -->
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 </head>
 <body>
     <nav>   
@@ -74,7 +76,7 @@ if ($row = $result->fetch_assoc()) {
     
 
 ?>
-        <form action="profilephp.php" method="post" id="infosform">
+        <form action="profile.php" method="post" id="infosform">
          <div class="infoos"> 
           <div>
           <label for="username">username</label>
@@ -184,17 +186,24 @@ if ($row = $result->fetch_assoc()) {
         <div class="addproduct">
             <div class="addimages">
                 <h2>add images</h2>
+                <form action="upload.php"  id="myDropzone" class="dropzone"> 
                 <div class="drop-area" id="dropArea" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
-                    Drop images here (3 images required)
+                     Drop images here (3 images required) 
+                  
+                     
                 </div>
+                </form>
                 <div>
                     <h4>Image Names:</h4>
                     <ul id="imageNames"></ul>
                 </div>
             </div>
             <div class="productinfos">
-                <form id="productForm" action="profilephp.php" method="post">
+                <form id="productForm" action="profilephp.php" method="post"  >
+                    
 
+                    
+                  
                     <label for="product-title">Product Title</label><br>
                     <input type="text" name="product-title" id="product-title"><br>
 
@@ -222,7 +231,7 @@ if ($row = $result->fetch_assoc()) {
                         <option value="">Subcategory</option>
                     </select><br>
 
-                    <!-- Hidden input fields for image variables -->
+                     Hidden input fields for image variables 
                     <input type="hidden" name="img1" id="img1" value="">
                     <input type="hidden" name="img2" id="img2" value="">
                     <input type="hidden" name="img3" id="img3" value="">
@@ -234,6 +243,11 @@ if ($row = $result->fetch_assoc()) {
               
             </div>
         </div>
+
+
+
+
+
     </div>  
 
 
@@ -403,5 +417,73 @@ if ($row = $result->fetch_assoc()) {
 
 //   }
 
+$username =$_SESSION['username'] ;
+$userid = $_SESSION['userid'];
+include("conect.php");
 
+
+// Form submission handling
+if (isset($_POST['changeinfos'])) {
+  // Retrieve the updated information from the form fields
+  $newUsername = $_POST['username'];
+  $newEmail = $_POST['email'];
+  $newPhoneNumber = $_POST['phone'];
+
+  // Re-establish the database connection if needed
+  $conn = mysqli_connect('localhost', 'root', '', 'shop');
+
+  // Execute an UPDATE SQL query to update the information in the user table
+  $updateSql = "UPDATE user SET Username = ?, Email = ?, PhoneNumber = ? WHERE Username = ?";
+  $updateStmt = $conn->prepare($updateSql);
+  $updateStmt->bind_param("ssss", $newUsername, $newEmail, $newPhoneNumber, $username);
+  if ($updateStmt->execute()) {
+    $_SESSION['username']=$newUsername;
+    header("Location: profile.php");
+
+  } else {
+      echo "Error updating information: " . $conn->error;
+  }
+}
+if (isset($_POST['changepassword'])) {
+  $oldPassword = $_POST['oldpassword'];
+  $newPassword = $_POST['newpassword'];
+  $confirmPassword = $_POST['confirmpassword'];
+
+  // Verify the old password against the hashed password in the database
+  $verifyPasswordSql = "SELECT Password FROM user WHERE Username = ?";
+  $verifyPasswordStmt = $conn->prepare($verifyPasswordSql);
+  $verifyPasswordStmt->bind_param("s", $username);
+  $verifyPasswordStmt->execute();
+  $verifyPasswordStmt->bind_result($hashedPassword);
+
+  if ($verifyPasswordStmt->fetch() && password_verify($oldPassword, $hashedPassword)) {
+      $verifyPasswordStmt->close(); // Close the old statement
+
+      // Check if the new password and confirm password match
+      if ($newPassword === $confirmPassword) {
+          // Hash the new password before storing it in the database
+          $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+          // Execute an UPDATE SQL query to update the password in the user table
+          $updatePasswordSql = "UPDATE user SET Password = ? WHERE Username = ?";
+          $updatePasswordStmt = $conn->prepare($updatePasswordSql);
+          $updatePasswordStmt->bind_param("ss", $hashedNewPassword, $username);
+
+          if ($updatePasswordStmt->execute()) {
+              echo '<script>alert("Password updated successfully!");</script>';
+              
+          } else {
+              echo "Error updating password: " . $conn->error;
+          }
+          
+          $updatePasswordStmt->close(); // Close the update statement
+      } else {
+      
+          echo '<script>alert("New password and confirm password do not match.");</script>';
+      }
+  } else {
+
+      echo '<script>alert("Old password is incorrect.");</script>';
+  }
+}
     ?>

@@ -53,132 +53,149 @@ document.addEventListener("DOMContentLoaded", function () {
               }
 
 
-//  let img1, img2, img3;
-//     let uploadedImages = 0;
+ let img1, img2, img3;
+    let uploadedImages = 0;
 
-//     function dropHandler(event) {
-//       event.preventDefault();
-//       if (event.dataTransfer.items) {
-//         const imageFiles = [];
-//         for (let i = 0; i < event.dataTransfer.items.length; i++) {
-//           if (event.dataTransfer.items[i].kind === 'file') {
-//             const file = event.dataTransfer.items[i].getAsFile();
-//             if (file && file.type.startsWith('image/')) {
-//               imageFiles.push(file);
-//             }
-//           }
-//         }
-
-//         if (uploadedImages + imageFiles.length <= 3) {
-//           for (let i = 0; i < imageFiles.length; i++) {
-//             const file = imageFiles[i];
-//             const fileName = file.name;
-//             switch (uploadedImages + i + 1) {
-//               case 1:
-//                 img1 = fileName;
-//                 break;
-//               case 2:
-//                 img2 = fileName;
-//                 break;
-//               case 3:
-//                 img3 = fileName;
-//                 break;
-//             }
-
-//             displayImageName(fileName);
-//           }
-
-//           uploadedImages += imageFiles.length;
-//           document.getElementById('dropArea').innerText = `Drop ${3 - uploadedImages} more image(s)`;
-//         } else {
-//           document.getElementById('dropArea').innerText = `You can only upload ${3 - uploadedImages} more image(s)`;
-//         }
-//       }
-//     }
-
-//     function dragOverHandler(event) {
-//       event.preventDefault();
-//     }
-
-//     function displayImageName(fileName) {
-//       const listItem = document.createElement('li');
-//       listItem.textContent = fileName;
-//       document.getElementById('imageNames').appendChild(listItem);
-//     }
-
-//     function addProduct() {
-//       // ... Your existing addProduct code ...
-  
-//       // Set the hidden input values with the image variables
-//       document.getElementById('img1').value = img1;
-//       document.getElementById('img2').value = img2;
-//       document.getElementById('img3').value = img3;
-  
-//       // Submit the form to the PHP script
-//       document.getElementById('productForm').submit();
-//   }
-let img1 = "", img2 = "", img3 = "";
-let uploadedImages = 0;
-
-function dropHandler(event) {
-    event.preventDefault();
-    if (event.dataTransfer.items) {
+    function dropHandler(event) {
+      event.preventDefault();
+      if (event.dataTransfer.items) {
         const imageFiles = [];
         for (let i = 0; i < event.dataTransfer.items.length; i++) {
-            if (event.dataTransfer.items[i].kind === 'file') {
-                const file = event.dataTransfer.items[i].getAsFile();
-                if (file && file.type.startsWith('image/')) {
-                    imageFiles.push(file);
-                }
+          if (event.dataTransfer.items[i].kind === 'file') {
+            const file = event.dataTransfer.items[i].getAsFile();
+            if (file && file.type.startsWith('image/')) {
+              imageFiles.push(file);
             }
+          }
         }
 
         if (uploadedImages + imageFiles.length <= 3) {
-            for (let i = 0; i < imageFiles.length; i++) {
-                const file = imageFiles[i];
-                const fileName = file.name;
-                switch (uploadedImages + i + 1) {
-                    case 1:
-                        img1 = fileName;
-                        break;
-                    case 2:
-                        img2 = fileName;
-                        break;
-                    case 3:
-                        img3 = fileName;
-                        break;
-                }
-
-                displayImageName(fileName);
+          for (let i = 0; i < imageFiles.length; i++) {
+            const file = imageFiles[i];
+            const fileName = file.name;
+            switch (uploadedImages + i + 1) {
+              case 1:
+                img1 = fileName;
+                break;
+              case 2:
+                img2 = fileName;
+                break;
+              case 3:
+                img3 = fileName;
+                break;
             }
 
-            uploadedImages += imageFiles.length;
-            document.getElementById('dropArea').innerText = `Drop ${3 - uploadedImages} more image(s)`;
+            displayImageName(fileName);
+          }
+
+          uploadedImages += imageFiles.length;
+          document.getElementById('dropArea').innerText = `Drop ${3 - uploadedImages} more image(s)`;
         } else {
-            document.getElementById('dropArea').innerText = `You can only upload ${3 - uploadedImages} more image(s)`;
+          document.getElementById('dropArea').innerText = `You can only upload ${3 - uploadedImages} more image(s)`;
         }
+      }
     }
-}
 
-function dragOverHandler(event) {
-    event.preventDefault();
-}
+    function dragOverHandler(event) {
+      event.preventDefault();
+    }
 
-function displayImageName(fileName) {
-    const listItem = document.createElement('li');
-    listItem.textContent = fileName;
-    document.getElementById('imageNames').appendChild(listItem);
-}
+    function displayImageName(fileName) {
+      const listItem = document.createElement('li');
+      listItem.textContent = fileName;
+      document.getElementById('imageNames').appendChild(listItem);
+    }
 
-function addProduct() {
-    // Set the hidden input values with the image variables
-    document.getElementById('img1').value = img1;
-    document.getElementById('img2').value = img2;
-    document.getElementById('img3').value = img3;
+    function addProduct() {
+      // ... Your existing addProduct code ...
+  
+      // Set the hidden input values with the image variables
+      document.getElementById('img1').value = img1;
+      document.getElementById('img2').value = img2;
+      document.getElementById('img3').value = img3;
+  
+      // Submit the form to the PHP script
+      document.getElementById('productForm').submit();
+  }
 
-    // Submit the form
-    document.getElementById('productForm').submit();
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let img1 = "", img2 = "", img3 = "";
+// let uploadedImages = 0;
+
+// function dropHandler(event) {
+//     event.preventDefault();
+//     if (event.dataTransfer.items) {
+//         const imageFiles = [];
+//         for (let i = 0; i < event.dataTransfer.items.length; i++) {
+//             if (event.dataTransfer.items[i].kind === 'file') {
+//                 const file = event.dataTransfer.items[i].getAsFile();
+//                 if (file && file.type.startsWith('image/')) {
+//                     imageFiles.push(file);
+//                 }
+//             }
+//         }
+
+//         if (uploadedImages + imageFiles.length <= 3) {
+//             for (let i = 0; i < imageFiles.length; i++) {
+//                 const file = imageFiles[i];
+//                 const fileName = file.name;
+//                 switch (uploadedImages + i + 1) {
+//                     case 1:
+//                         img1 = fileName;
+//                         break;
+//                     case 2:
+//                         img2 = fileName;
+//                         break;
+//                     case 3:
+//                         img3 = fileName;
+//                         break;
+//                 }
+
+//                 displayImageName(fileName);
+//             }
+
+//             uploadedImages += imageFiles.length;
+//             document.getElementById('dropArea').innerText = `Drop ${3 - uploadedImages} more image(s)`;
+//         } else {
+//             document.getElementById('dropArea').innerText = `You can only upload ${3 - uploadedImages} more image(s)`;
+//         }
+//     }
+// }
+
+// function dragOverHandler(event) {
+//     event.preventDefault();
+// }
+
+// function displayImageName(fileName) {
+//     const listItem = document.createElement('li');
+//     listItem.textContent = fileName;
+//     document.getElementById('imageNames').appendChild(listItem);
+// }
+
+// function addProduct() {
+//     // Set the hidden input values with the image variables
+//     document.getElementById('img1').value = img1;
+//     document.getElementById('img2').value = img2;
+//     document.getElementById('img3').value = img3;
+
+//     // Submit the form
+//     document.getElementById('productForm').submit();
+// }
+
+
 
 
 
@@ -194,6 +211,68 @@ function addProduct() {
 
 
 
+//   let img1 = "", img2 = "", img3 = "";
+//   let uploadedImages = 0;
+
+//   function dropHandler(event) {
+//       event.preventDefault();
+//       if (event.dataTransfer.items) {
+//           const imageFiles = [];
+//           for (let i = 0; i < event.dataTransfer.items.length; i++) {
+//               if (event.dataTransfer.items[i].kind === 'file') {
+//                   const file = event.dataTransfer.items[i].getAsFile();
+//                   if (file && file.type.startsWith('image/')) {
+//                       imageFiles.push(file);
+//                   }
+//               }
+//           }
+
+//           if (uploadedImages + imageFiles.length <= 3) {
+//               for (let i = 0; i < imageFiles.length; i++) {
+//                   const file = imageFiles[i];
+//                   const fileName = file.name;
+//                   switch (uploadedImages + i + 1) {
+//                       case 1:
+//                           img1 = fileName;
+//                           break;
+//                       case 2:
+//                           img2 = fileName;
+//                           break;
+//                       case 3:
+//                           img3 = fileName;
+//                           break;
+//                   }
+
+//                   displayImageName(fileName);
+//               }
+
+//               uploadedImages += imageFiles.length;
+//               document.getElementById('dropArea').innerText = `Drop ${3 - uploadedImages} more image(s)`;
+//           } else {
+//               document.getElementById('dropArea').innerText = `You can only upload ${3 - uploadedImages} more image(s)`;
+//           }
+//       }
+//   }
+
+//   function dragOverHandler(event) {
+//       event.preventDefault();
+//   }
+
+//   function displayImageName(fileName) {
+//       const listItem = document.createElement('li');
+//       listItem.textContent = fileName;
+//       document.getElementById('imageNames').appendChild(listItem);
+//   }
+
+//   function addProduct() {
+//       // Set the hidden input values with the image filenames
+//       document.getElementById('img1').value = img1;
+//       document.getElementById('img2').value = img2;
+//       document.getElementById('img3').value = img3;
+
+//       // Submit the form
+//       document.getElementById('productForm').submit();
+//   }
 
 
 
@@ -201,7 +280,12 @@ function addProduct() {
 
 
 
-
+//   var myDropzone = new Dropzone("#myDropzone", {
+//     url: "upload.php",
+//     paramName: "file[]", // Use "file[]" to match the PHP code
+//     maxFiles: 3,
+//     acceptedFiles: 'image/*',
+// });
 
 
 

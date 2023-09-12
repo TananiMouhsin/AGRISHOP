@@ -1,3 +1,7 @@
+<?php
+  session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,23 +20,20 @@
         </div>
         <div class="navlinks" id="naglinks">
             <ul>
-
                 <li><a href="home.php">home</a></li>
                 <li><a href="products.php">products</a></li>
                 <li><a href="aboutus.php">about us</a></li>
                 <?php
-                session_start(); 
+                // session_start(); 
                 if (isset($_SESSION['username'])) {
                     echo '<li><a href="profile.php">profile</a></li>';
                 } else {
                     echo '<li><a href="login.html">login</a></li>';
                 }
                 ?>
-
             </ul>
         </div>
         <img src="images/hb.png" alt="" class="hb">
-        
     </nav>
 
   <div class="container-nav-products">   
@@ -41,53 +42,53 @@
             <div class="category" onclick="toggleSubCategories(this)">
               <p><span class="arrow"></span>Produce</p>
                 <div class="sub-categories">
-                <div class="sub-category">Fruits</div>
-                <div class="sub-category">Vegetables</div>
-                <div class="sub-category">Grains</div>
-                <div class="sub-category">Herbs</div>
-                <div class="sub-category">Nuts</div>
-                <div class="sub-category">Spices</div>
+                    <div class="sub-category"><a href="products.php?subcategory=Fruits">Fruits</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Vegetables">Vegetables</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Grains">Grains</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Herbs">Herbs</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Nuts">Nuts</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Spices">Spices</a></div>
                 </div>
             </div>
             <div class="category" onclick="toggleSubCategories(this)">
               <p><span class="arrow"></span>Dairy and Eggs</p>
                 <div class="sub-categories">
-                <div class="sub-category">Milk</div>
-                <div class="sub-category">Cheese</div>
-                <div class="sub-category">Butter</div>
-                <div class="sub-category">Yogurt</div>
-                <div class="sub-category">Eggs</div>
+                    <div class="sub-category"><a href="products.php?subcategory=Milk">Milk</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Cheese">Cheese</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Butter">Butter</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Yogurt">Yogurt</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Eggs">Eggs</a></div>
                 </div>
             </div>
             <div class="category" onclick="toggleSubCategories(this)">
             <p><span class="arrow"></span>Meat and Poultry</p>
                 <div class="sub-categories">
-                <div class="sub-category">Beef</div>
-                <div class="sub-category">Chicken</div>
-                <div class="sub-category">Lamb</div>
-                <div class="sub-category">Pork</div>
-                <div class="sub-category">Turkey</div>
+                    <div class="sub-category"><a href="products.php?subcategory=Beef">Beef</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Chicken">Chicken</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Lamb">Lamb</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Pork">Pork</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Turkey">Turkey</a></div>
                 </div>
             </div>
             <div class="category" onclick="toggleSubCategories(this)">
             <p><span class="arrow"></span>Farm Supplies and Equipment</p>
                 <div class="sub-categories">
-                <div class="sub-category">Seeds</div>
-                <div class="sub-category">Fertilizers</div>
-                <div class="sub-category">Irrigation Systems</div>
-                <div class="sub-category">Farm Machinery</div>
-                <div class="sub-category">Gardening Tools</div>
-                <div class="sub-category">Pest Control Products</div>
+                    <div class="sub-category"><a href="products.php?subcategory=Seeds">Seeds</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Fertilizers">Fertilizers</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Irrigation Systems">Irrigation Systems</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Farm Machinery">Farm Machinery</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Gardening Tools">Gardening Tools</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Pest Control Products">Pest Control Products</a></div>
                 </div>
             </div>
             <div class="category" onclick="toggleSubCategories(this)">
             <p><span class="arrow"></span>Value-Added Products</p>
                 <div class="sub-categories">
-                <div class="sub-category">Honey</div>
-                <div class="sub-category">Jams and Preserves</div>
-                <div class="sub-category">Pickles</div>
-                <div class="sub-category">Sausages and Charcuterie</div>
-                <div class="sub-category">Baked Goods (using farm produce)</div>
+                    <div class="sub-category"><a href="products.php?subcategory=Honey">Honey</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Jams and Preserves">Jams and Preserves</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Pickles">Pickles</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Sausages and Charcuterie">Sausages and Charcuterie</a></div>
+                    <div class="sub-category"><a href="products.php?subcategory=Baked Goods (using farm produce)">Baked Goods (using farm produce)</a></div>
                 </div>
             </div>
             </div>
@@ -95,12 +96,21 @@
         <div class="products">
           <?php
           $conn = mysqli_connect('localhost', 'root', '', 'shop');
-          $sql = "SELECT * FROM product ";
+
+          // Check if a subcategory query parameter is provided
+          if (isset($_GET['subcategory'])) {
+              $subcategory = $_GET['subcategory'];
+              // Modify your SQL query to filter by subcategory
+              $sql = "SELECT * FROM product WHERE Subcategory = '$subcategory'";
+          } else {
+              // If no subcategory is specified, fetch all products
+              $sql = "SELECT * FROM product";
+          }
+
           $result = $conn->query($sql);
+
           while($row = $result->fetch_assoc()) {
-
           ?>
-
           
             <div class="product-card">
                 <?php echo "<img src='images/" . $row['img1'] . "' >";?>
@@ -111,14 +121,9 @@
                 
                 <p class="product-description"><?php echo $row['Description']; ?></p>
                 <div class="price">price: $<?php echo  $row['Price']; ?></div>
-                
             </div>
 
-
           <?php }?>
-              
-              
-
         </div>
     </div>  
     <footer class="footer">
@@ -144,7 +149,7 @@
              </ul>
            </div>
            <div class="footer-col">
-             <h4>products </h4>
+             <h4>products</h4>
              <ul>
                <li><a href="#">Meat/Fish</a></li>
                <li><a href="#">Fruits/Vegetables</a></li>
@@ -180,10 +185,10 @@
     }
 
     const menuHamburger = document.querySelector(".hb")
-        const navLinks = document.querySelector(".navlinks")
-        menuHamburger.addEventListener('click',()=>{
-        navLinks.classList.toggle('active')
-        })
+    const navLinks = document.querySelector(".navlinks")
+    menuHamburger.addEventListener('click',()=>{
+    navLinks.classList.toggle('active')
+    })
   </script>
     
 </body>
